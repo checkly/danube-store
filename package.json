@@ -1,0 +1,19 @@
+{
+  "name": "danube-store",
+  "version": "1.0.0",
+  "description": "A store to buy books - but on the internet!",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm i && node app.js",
+    "dev": "npm i && nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5",
+    "nodemon": "^2.0.2"
+  },
+  "author": "Giovanni Rago, ragog90@gmail.com",
+  "license": "ISC"
+}
