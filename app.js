@@ -2,26 +2,26 @@ const path = require('path')
 const fs = require('fs')
 const express = require('express')
 var cors = require('cors')
-// const history = require('connect-history-api-fallback')
+const history = require('connect-history-api-fallback')
 
 const app = express()
 const port = process.env.PORT || 5000
 
-// app.use(history())
+app.use(history())
 
 app.use(express.json())
 app.use(cors())
 app.use(express.static(__dirname + '/vue/dist'))
 app.get(/.*/), (req,res) => res.sendFile(__dirname + '/vue/dist/index.html')
 
-app.get('/books', (req, res) => {
+app.get('/api/books', (req, res) => {
     const rawData = fs.readFileSync('books.json')
     const books = JSON.parse(rawData)
     console.log(books)
     res.status('200').json(books)
 })
 
-app.get('/books/:id', (req, res) => {
+app.get('/api/books/:id', (req, res) => {
     const rawData = fs.readFileSync('books.json')
     const books = JSON.parse(rawData)
     var arrayFound = books.filter(function(item) {
