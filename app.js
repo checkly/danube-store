@@ -21,6 +21,16 @@ app.get('/books', (req, res) => {
     res.status('200').json(books)
 })
 
+app.get('/books/:id', (req, res) => {
+    const rawData = fs.readFileSync('books.json')
+    const books = JSON.parse(rawData)
+    var arrayFound = books.filter(function(item) {
+        return item.id == req.params.id;
+    });
+    console.log(arrayFound)
+    res.status('200').json(arrayFound[0])
+})
+
 app.get('*', (req, res) => {
     res.status('404').json({
         message: 'Page not found.',
