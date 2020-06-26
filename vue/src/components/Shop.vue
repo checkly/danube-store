@@ -14,7 +14,10 @@
         >
           <div class="preview-title">{{ item.title }}</div>
           <div class="preview-author">by {{ item.author }}</div>
-          <p>★★★★☆</p>
+          <div class="preview-details">
+            <p>★★★★☆</p>
+            <p>$14.95</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -70,6 +73,7 @@ export default {
   overflow-wrap: break-word;
 }
 .preview-author {
+  font-size: 10pt;
   text-align: center;
 }
 .preview {
@@ -81,7 +85,7 @@ export default {
 li {
   display: inline-block;
   width: 200px;
-  height: 110px;
+  height: 120px;
   overflow: hidden;
   margin: 5px;
 }
@@ -95,5 +99,10 @@ h3 {
 }
 p {
     text-align: center;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+.preview-details {
+
 }
 </style>
