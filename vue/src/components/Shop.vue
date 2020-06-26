@@ -73,6 +73,7 @@ export default {
   text-align: center;
 }
 .preview {
+  border-radius: 4pt;
   border: 1px solid #fff;
   background: #fff;
   padding: 4px;

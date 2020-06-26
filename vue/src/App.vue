@@ -1,66 +1,70 @@
 <template>
   <div id="app">
     <div id="top-special-offer">
-      <h3>SPECIAL OFFER: 20% OFF BOOKS WITH <i>WORDS</i> IN THEM!!! LIMITED TIME ONLY!</h3>
+        <h3>SPECIAL OFFER: 20% OFF BOOKS WITH <i>WORDS</i> IN THEM!!! LIMITED TIME ONLY!</h3>
     </div>
-    <hr />    
-    <div class="topbar">
-      <a href="/">
-        <img src="static/logo-horizontal.png" />
-      </a>
-      <input type="text" name="fname" />
-      <button id="button-search">Search</button>
-      <div id="login-message" v-if="loggedIn">Welcome back, {{username}}</div>
-      <p id="clock">3:43pm 23/06/2002</p>
-      <div class="account">
-        <button id="login" @click="show()">Log in</button>
-        <button id="signup" class="call-to-action">Sign up</button>
+        <!-- <hr id="" />       -->
+    <div id="app-content">
+
+      <div class="topbar">
+        <a href="/">
+          <img src="static/logo-horizontal.png" />
+        </a>
+        <input type="text" name="fname" />
+        <button id="button-search">Search</button>
+        <div id="login-message" v-if="loggedIn">Welcome back, {{username}}</div>
+        <p id="clock">3:43pm 23/06/2002</p>
+        <div class="account">
+          <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
+          <button id="logout" v-else @click="signOut()">Log out</button>
+          <button id="signup" class="call-to-action">Sign up</button>
+        </div>
       </div>
-    </div>
 
-    <hr />
+      <hr />
 
-    <modal name="hello-world">
-      <div class="box">
-        <div class="box-part" id="bp-left">
-          <div class="partition" id="partition-register">
-            <div class="partition-title">CREATE ACCOUNT</div>
-            <div class="partition-form">
-              <form autocomplete="false">
+      <modal name="hello-world">
+        <div class="box">
+          <div class="box-part" id="bp-left">
+            <div class="partition" id="partition-register">
+              <div class="partition-title">CREATE ACCOUNT</div>
+              <div class="partition-form">
+                <form autocomplete="false">
 
-                <div class="autocomplete-fix">
-                  <input disabled type="password">
+                  <div class="autocomplete-fix">
+                    <input disabled type="password">
+                  </div>
+
+                  <input id="n-email" type="text" placeholder="Email">
+                  <input id="n-username" v-model="username" type="text" placeholder="Username">
+                  <input id="n-password2" type="password" placeholder="Password">
+                </form>
+
+                <div style="margin-top: 42px">
                 </div>
 
-                <input id="n-email" type="text" placeholder="Email">
-                <input id="n-username" v-model="username" type="text" placeholder="Username">
-                <input id="n-password2" type="password" placeholder="Password">
-              </form>
+                <div class="button-set">
+                  <button id="goto-signin-btn" @click="signIn">Sign In</button>
+                  <button id="register-btn">Register</button>
+                </div>
 
-              <div style="margin-top: 42px">
+                <!-- <img id="logo-big" src="/static/logo-big.jpeg" /> -->
+                <!-- <button class="large-btn github-btn">connect with <span>github</span></button>
+                <button class="large-btn facebook-btn">connect with <span>facebook</span></button> -->
               </div>
-
-              <div class="button-set">
-                <button id="goto-signin-btn" @click="signIn">Sign In</button>
-                <button id="register-btn">Register</button>
-              </div>
-
-              <!-- <img id="logo-big" src="/static/logo-big.jpeg" /> -->
-              <!-- <button class="large-btn github-btn">connect with <span>github</span></button>
-              <button class="large-btn facebook-btn">connect with <span>facebook</span></button> -->
             </div>
           </div>
-        </div>
-        <div class="box-part" id="bp-right">
-          <div class="box-messages">
+          <div class="box-part" id="bp-right">
+            <div class="box-messages">
+            </div>
           </div>
-        </div>
-    </div>
-  </modal>
-    <div class="main-container">
-      <router-view name="componentShop"></router-view>
-      <router-view name="componentDetail"></router-view>
-      <router-view name="componentSidebar"></router-view>
+      </div>
+    </modal>
+      <div class="main-container">
+        <router-view name="componentShop"></router-view>
+        <router-view name="componentDetail"></router-view>
+        <router-view name="componentSidebar"></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +89,9 @@ export default {
     signIn () {
       this.loggedIn=true;
       this.$modal.hide('hello-world');
+    },
+    signOut () {
+      this.loggedIn=false;
     }
   },
   components: {
@@ -113,7 +120,7 @@ input {
   font-size:12pt;
   flex-grow: 1;
 }
-#app {
+#app-content {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -121,9 +128,10 @@ input {
   margin-top: 10px;
   margin-left: 10px;
 }
+body { margin: 0; }
 #top-special-offer{
   background-color: #1d3557;
-  padding: 7pt 0;
+  padding: 10pt 0;
 }
 #clock {
   align-self: center;
@@ -152,10 +160,6 @@ button {
 .call-to-action {
   background: #e63946;
 }
-#button-search {
-  
-}
-
 /* modal */
 .box {
 background: white;

@@ -58,8 +58,8 @@ export default {
 }
 .detail-wrapper { 
   margin-right: 10pt;
-  border: 2px solid #ebf5ff;
-  border-radius: 10pt;
+  border-radius: 4pt;
+  border: 2px solid #a8dadc;
   background: #D3EDEE;
   padding: 0 10pt;
   margin-top: 10pt;
