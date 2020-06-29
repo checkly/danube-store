@@ -135,14 +135,6 @@ export default {
 }
 </script>
 <style scoped>
-.main-container {
-  display: flex;
-}
-.account {
-  align-self: center;
-  margin-left: 20pt;
-  align-content: center;
-}
 .topbar {
   display: flex;
   height: 30pt;
@@ -152,21 +144,7 @@ input {
   font-size: 12pt;
   flex-grow: 1;
 }
-#app-content {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-body {
-  margin: 0;
-}
-#top-special-offer {
-  background-color: #1d3557;
-  padding: 10pt 0;
-}
+
 #clock {
   align-self: center;
   margin-left: 5pt;
