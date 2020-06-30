@@ -1,139 +1,186 @@
 <template>
-    <div class="topbar">
-        <a href="/">
-          <img src="static/logo-horizontal.png" />
-        </a>
-        <input type="text" name="fname" />
-        <button id="button-search">Search</button>
-        <div id="login-message" v-if="loggedIn">
-          Welcome back, {{ username }}
-        </div>
-        <p id="clock">3:43pm 23/06/2002</p>
-        <div class="account">
-          <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
-          <button id="logout" v-else @click="signOut()">Log out</button>
-          <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
-        </div>
-        <hr />
-        <modal name="modal-login">
-        <div class="box">
-          <div class="box-part" id="bp-left">
-            <div class="partition" id="partition-login">
-              <div class="partition-title">LOG IN</div>
-              <div class="partition-form">
-                <form autocomplete="false">
-                  <div class="autocomplete-fix">
-                    <input disabled type="password" />
-                  </div>
-
-                  <input id="n-email" class="textfield-modal" type="text" placeholder="Email" />
-                  <input
-                    id="n-username"
-                    class="textfield-modal" 
-                    v-model="username"
-                    type="text"
-                    placeholder="Username"
-                  />
-                  <input
-                    id="n-password2"
-                    class="textfield-modal" 
-                    type="password"
-                    placeholder="Password"
-                  />
-                </form>
-
-                <div style="margin-top: 42px"></div>
-                <div class="button-set">
-                  <button id="goto-signin-btn" @click="signIn">Sign In</button>
-                  <button id="register-btn">Register</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="box-part" id="bp-right">
-            <div class="box-messages"></div>
-          </div>
-        </div>
-      </modal>
-      <modal name="modal-signup" height="auto">
-        <div class="box">
-          <div class="box-part" id="bp-left">
-            <div class="partition" id="partition-register">
-              <div class="partition-title">SIGN UP</div>
-              <div class="partition-form">
-                <form autocomplete="false">
-                  <div class="autocomplete-fix">
-                    <input disabled type="password" />
-                  </div>
-                  <input id="s-name" class="textfield-modal" type="text" placeholder="Name" />
-                  <input id="s-surname" class="textfield-modal" type="text" placeholder="Surname" />
-                  <input id="s-email" class="textfield-modal" type="text" placeholder="Email" />
-                  <input
-                    id="s-password2"
-                    type="password"
-                    placeholder="Password"
-                    class="textfield-modal" 
-                  />
-                  <input
-                    id="s-company"
-                    type="text"
-                    placeholder="Company (optional)"
-                    class="textfield-modal" 
-                  />
-                  <br />
-                  <label id="account-usage">I will be using my account for:</label><br>
-                  <input type="radio" id="myself" name="user-type" value="myelf">
-                  <label for="myself">Myself</label><br>
-                  <input type="radio" id="business" name="user-type" value="business">
-                  <label for="business">My business</label><br>
-                  <br />
-                  <input type="checkbox" id="marketing-agreement" name="marketing-agreement">
-                  <label for="marketing-agreement">I would like to receive promotional emails</label><br>
-                  <input type="checkbox" id="privacy-policy" name="privacy-policy">
-                  <label for="privacy-policy">I have read and accept the privacy policy</label><br>
-                </form>
-                <div style="margin-top: 42px"></div>
-                <div class="button-set">
-                  <button id="goto-signin-btn" @click="signIn">Sign In</button>
-                  <button id="register-btn">Register</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="box-part" id="bp-right">
-            <div class="box-messages"></div>
-          </div>
-        </div>
-      </modal>
+  <div class="topbar">
+    <a href="/">
+      <img src="static/logo-horizontal.png" />
+    </a>
+    <input type="text" name="fname" />
+    <button id="button-search">Search</button>
+    <div id="login-message" v-if="loggedIn">Welcome back, {{ email }}</div>
+    <p id="clock">3:43pm 23/06/2002</p>
+    <div class="account">
+      <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
+      <button id="logout" v-else @click="signOut()">Log out</button>
+      <button id="signup" @click="signUp()" class="call-to-action">
+        Sign up
+      </button>
     </div>
+    <hr />
+    <modal name="modal-login">
+      <div class="box">
+        <div class="box-part" id="bp-left">
+          <div class="partition" id="partition-login">
+            <div class="partition-title">LOG IN</div>
+            <div class="partition-form">
+              <form autocomplete="false">
+                <div class="autocomplete-fix">
+                  <input disabled type="password" />
+                </div>
+                <input
+                  id="n-email"
+                  class="textfield-modal"
+                  v-model="email"
+                  type="text"
+                  placeholder="Email"
+                />
+                <input
+                  id="n-password2"
+                  class="textfield-modal"
+                  type="password"
+                  placeholder="Password"
+                />
+              </form>
+              <div style="margin-top: 42px"></div>
+              <div class="button-set">
+                <button id="goto-signin-btn" @click="signIn">Sign In</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-part" id="bp-right">
+          <div class="box-messages"></div>
+        </div>
+      </div>
+    </modal>
+    <modal name="modal-signup" height="auto">
+      <div class="box">
+        <div class="box-part" id="bp-left">
+          <div class="partition" id="partition-register">
+            <div class="partition-title">SIGN UP</div>
+            <div class="partition-form">
+              <form autocomplete="false">
+                <div class="autocomplete-fix">
+                  <input disabled type="password" />
+                </div>
+                <input
+                  id="s-name"
+                  class="textfield-modal"
+                  type="text"
+                  placeholder="Name"
+                />
+                <input
+                  id="s-surname"
+                  class="textfield-modal"
+                  type="text"
+                  placeholder="Surname"
+                />
+                <input
+                  id="s-email"
+                  class="textfield-modal"
+                  v-model="email"
+                  type="text"
+                  placeholder="Email"
+                />
+                <input
+                  id="s-password2"
+                  type="password"
+                  placeholder="Password"
+                  class="textfield-modal"
+                />
+                <input
+                  id="s-company"
+                  type="text"
+                  placeholder="Company (optional)"
+                  class="textfield-modal"
+                />
+                <br />
+                <label id="account-usage">I will be using my account for:</label
+                ><br />
+                <input
+                  type="radio"
+                  id="myself"
+                  name="user-type"
+                  value="myelf"
+                />
+                <label for="myself">Myself</label><br />
+                <input
+                  type="radio"
+                  id="business"
+                  name="user-type"
+                  value="business"
+                />
+                <label for="business">My business</label><br />
+                <br />
+                <input
+                  type="checkbox"
+                  id="marketing-agreement"
+                  name="marketing-agreement"
+                />
+                <label for="marketing-agreement"
+                  >I would like to receive promotional emails</label
+                ><br />
+                <input
+                  type="checkbox"
+                  id="privacy-policy"
+                  name="privacy-policy"
+                />
+                <label for="privacy-policy"
+                  >I have read and accept the privacy policy</label
+                ><br />
+              </form>
+              <div id="error-message" v-if="error">
+                Please fill in all fields.
+              </div>
+              <div style="margin-top: 42px"></div>
+              <div class="button-set">
+                <button id="register-btn" @click="submitSignUp()">
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-part" id="bp-right">
+          <div class="box-messages"></div>
+        </div>
+      </div>
+    </modal>
+  </div>
 </template>
 <script>
 export default {
-    data: function() {
-        return {
-        loggedIn: false,
-        username: ""
-        };
-    },
-    methods: {
-        show() {
-        this.$modal.show("modal-login");
-        },
-        signIn() {
-        this.loggedIn = true;
-        this.$modal.hide("modal-login");
-        },
-        signOut() {
-        this.loggedIn = false;
-        },
-        signUp() {
-        this.$modal.show("modal-signup");
-        },
-        submitSignUp() {
-        this.$modal.show("modal-signup");
-        }
+  data: function() {
+    return {
+      loggedIn: false,
+      email: "",
+      error: ""
+    };
   },
-}
+  methods: {
+    show() {
+      this.$modal.show("modal-login");
+    },
+    signIn() {
+      this.loggedIn = true;
+      this.$modal.hide("modal-login");
+    },
+    signOut() {
+      this.loggedIn = false;
+    },
+    signUp() {
+      this.$modal.show("modal-signup");
+    },
+    submitSignUp() {
+      if (!this.email) {
+        this.error = "error";
+        console.log('no email found')
+      } else {
+        console.log('email found')
+        this.loggedIn = true;
+        this.$modal.hide("modal-signup");
+      }
+    }
+  }
+};
 </script>
 <style scoped>
 .topbar {
@@ -256,5 +303,11 @@ modal[name="modal-signup"] > .box {
 }
 label#account-usage {
   margin-left: 40pt;
+}
+#error-message {
+  margin-left: 40pt;
+  margin-top: 10pt;
+  font-size: 8pt;
+  color: red;
 }
 </style>
