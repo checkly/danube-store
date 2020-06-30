@@ -18,7 +18,7 @@
         <modal name="modal-login">
         <div class="box">
           <div class="box-part" id="bp-left">
-            <div class="partition" id="partition-register">
+            <div class="partition" id="partition-login">
               <div class="partition-title">LOG IN</div>
               <div class="partition-form">
                 <form autocomplete="false">
@@ -26,15 +26,17 @@
                     <input disabled type="password" />
                   </div>
 
-                  <input id="n-email" type="text" placeholder="Email" />
+                  <input id="n-email" class="textfield-modal" type="text" placeholder="Email" />
                   <input
                     id="n-username"
+                    class="textfield-modal" 
                     v-model="username"
                     type="text"
                     placeholder="Username"
                   />
                   <input
                     id="n-password2"
+                    class="textfield-modal" 
                     type="password"
                     placeholder="Password"
                   />
@@ -63,7 +65,6 @@
                   <div class="autocomplete-fix">
                     <input disabled type="password" />
                   </div>
-
                   <input id="s-name" class="textfield-modal" type="text" placeholder="Name" />
                   <input id="s-surname" class="textfield-modal" type="text" placeholder="Surname" />
                   <input id="s-email" class="textfield-modal" type="text" placeholder="Email" />
@@ -79,18 +80,18 @@
                     placeholder="Company (optional)"
                     class="textfield-modal" 
                   />
-                  <p>Would you like to receive promotional emails including product news, events and more?</p>
-                  <div>
-                    <input type="radio" id="radio-yes" name="radio-yes"
-                          checked>
-                    <label for="radio-yes">Yes</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="radio-no" name="radio-no">
-                    <label for="radio-no">No</label>
-                  </div>
+                  <br />
+                  <label id="account-usage">I will be using my account for:</label><br>
+                  <input type="radio" id="myself" name="user-type" value="myelf">
+                  <label for="myself">Myself</label><br>
+                  <input type="radio" id="business" name="user-type" value="business">
+                  <label for="business">My business</label><br>
+                  <br />
+                  <input type="checkbox" id="marketing-agreement" name="marketing-agreement">
+                  <label for="marketing-agreement">I would like to receive promotional emails</label><br>
+                  <input type="checkbox" id="privacy-policy" name="privacy-policy">
+                  <label for="privacy-policy">I have read and accept the privacy policy</label><br>
                 </form>
-
                 <div style="margin-top: 42px"></div>
                 <div class="button-set">
                   <button id="goto-signin-btn" @click="signIn">Sign In</button>
@@ -144,7 +145,6 @@ input {
   font-size: 12pt;
   flex-grow: 1;
 }
-
 #clock {
   align-self: center;
   margin-left: 5pt;
@@ -172,7 +172,6 @@ button {
 .call-to-action {
   background: #e63946;
 }
-/* modal */
 modal[name="modal-login"] > .box {
   background: white;
   overflow: hidden;
@@ -199,7 +198,7 @@ modal[name="modal-signup"] > .box {
   vertical-align: top;
   box-sizing: border-box;
   height: 100%;
-  width: 50%;
+  width: 80%;
 }
 .box-messages {
   position: absolute;
@@ -214,6 +213,7 @@ modal[name="modal-signup"] > .box {
 .partition-form {
   padding: 0 20px;
   box-sizing: border-box;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 .partition-title {
   box-sizing: border-box;
@@ -253,5 +253,8 @@ modal[name="modal-signup"] > .box {
 #login-message {
   font-weight: bold;
   align-self: center;
+}
+label#account-usage {
+  margin-left: 40pt;
 }
 </style>
