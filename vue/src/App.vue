@@ -14,6 +14,7 @@
         <router-view name="componentShop"></router-view>
         <router-view name="componentDetail"></router-view>
         <router-view name="componentSidebar"></router-view>
+        <router-view name="componentCart"></router-view>
       </div>
     </div>
   </div>
@@ -24,6 +25,7 @@ import Shop from "./components/Shop";
 import Sidebar from "./components/Sidebar";
 import Detail from "./components/Detail";
 import TopBar from "./components/Topbar";
+import Cart from "./components/Cart";
 
 export default {
   name: "App",
@@ -37,7 +39,8 @@ export default {
     "component-sidebar": Sidebar,
     "component-shop": Shop,
     "component-detail": Detail,
-    "component-topbar": TopBar
+    "component-topbar": TopBar,
+    "component-cart": Cart
   }
 };
 </script>
@@ -50,10 +53,6 @@ export default {
   align-self: center;
   margin-left: 20pt;
   align-content: center;
-}
-.topbar {
-  display: flex;
-  height: 30pt;
 }
 #app-content {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

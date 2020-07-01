@@ -1,8 +1,6 @@
 <template>
   <div class="shop">
-    <div class="special-offer">
-
-    </div>
+    <div class="special-offer"></div>
     <div class="shop-content">
       <h2>Top sellers</h2>
       <ul>
@@ -25,7 +23,6 @@
 </template>
 
 <script>
-
 export default {
   data: function() {
     return {
@@ -42,11 +39,14 @@ export default {
   methods: {
     pullItems: function() {
       // pull from server
-      this.$http.get('/api/books').then(response => {
-        this.items = response.body
-      }, error => {
-        console.log(error)
-      })
+      this.$http.get("/api/books").then(
+        response => {
+          this.items = response.body;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     },
     navigateToMessage: function(id) {
       this.$router.push({ path: `/books/${id}` }).catch(err => {
@@ -62,7 +62,7 @@ export default {
   margin-right: 10pt;
   border: 2px solid #a8dadc;
   border-radius: 4pt;
-  background: #D3EDEE; /*ebf9ff;*/
+  background: #d3edee;
   padding: 0 10pt;
   margin-top: 10pt;
 }
@@ -91,18 +91,14 @@ li {
 }
 h3 {
   text-align: center;
-
 }
 .shop {
   flex-grow: 1;
   margin-left: 220pt;
 }
 p {
-    text-align: center;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-}
-.preview-details {
-
+  text-align: center;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 </style>

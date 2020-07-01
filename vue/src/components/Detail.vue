@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>      
-        <button class="call-to-action">Add to cart</button>  
+        <button class="call-to-action" @click="addToCart()">Add to cart</button>  
       </div>
   </div>
 </template>
@@ -47,6 +47,10 @@ export default {
       }, error => {
         console.log(error)
       })
+    },
+    addToCart: function() {
+      const myStorage = window.localStorage;
+      myStorage.setItem('myBook', this.bookName) // TODO make comprehensive
     }
   }
 };

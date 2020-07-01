@@ -1,7 +1,7 @@
 <template>
   <div class="topbar">
     <a href="/">
-      <img src="static/logo-horizontal.png" />
+      <img id="logo" src="static/logo-horizontal.png" />
     </a>
     <input type="text" name="fname" />
     <button id="button-search">Search</button>
@@ -10,9 +10,8 @@
     <div class="account">
       <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
       <button id="logout" v-else @click="signOut()">Log out</button>
-      <button id="signup" @click="signUp()" class="call-to-action">
-        Sign up
-      </button>
+      <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
+      <button id="cart" @click="navigateToCart()"><img id="cart-img" src="static/icon-cart.png" /></button>
     </div>
     <hr />
     <modal name="modal-login">
@@ -178,6 +177,11 @@ export default {
         this.loggedIn = true;
         this.$modal.hide("modal-signup");
       }
+    },
+    navigateToCart() {
+      this.$router.push({ path: `/cart` }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
     }
   }
 };
@@ -204,7 +208,7 @@ h3 {
   margin-inline-start: 0;
   margin-inline-end: 0;
 }
-img {
+#logo {
   width: 180pt;
   height: 30pt;
 }
@@ -309,5 +313,13 @@ label#account-usage {
   margin-top: 10pt;
   font-size: 8pt;
   color: red;
+}
+#cart-img {
+  height: 17pt;
+  width: 21pt;
+  vertical-align: middle;
+}
+button#cart {
+  padding: 7pt 10pt;
 }
 </style>

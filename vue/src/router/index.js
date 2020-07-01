@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Sidebar from '@/components/Sidebar'
 import Shop from '@/components/Shop'
 import Detail from '@/components/Detail'
+import Cart from '@/components/Cart'
 import vueResource from 'vue-resource';
 
 Vue.use(Router)
@@ -17,6 +18,10 @@ export default new Router({
     {
       path: '/books/:id', 
       components: { componentSidebar: Sidebar, componentDetail: Detail }
+    },
+    {
+      path: '/cart',
+      components: { componentCart: Cart }
     }
   ],
   mode: 'history'
