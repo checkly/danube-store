@@ -1,11 +1,28 @@
 <template>
   <div class="cart">
     <h1>Your Shopping Cart</h1>
-    <p>Your shopping cart is empty. Go buy some books!</p>
+    <p v-if="!cartItems">Your shopping cart is empty. Go buy some books!</p>
+    <ul>
+      <li v-for="item in cartItems" :key="item.title">
+        1x, {{ item.title }}, {{ item.author }}, ${{ item.price }}
+      </li>
+    </ul>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      cartItems: []
+    };
+  },
+  methods: {},
+  mounted() {
+    const myStorage = window.localStorage;
+    const cartContentJson = myStorage.getItem("cartContent");
+    this.cartItems = JSON.parse(cartContentJson);
+  }
+};
 </script>
 <style scoped>
 .cart {
@@ -25,17 +42,6 @@ h2 {
   margin-block-start: 0.25em;
   margin-block-end: 0.5em;
 }
-.category-title-wrapper {
-  border-radius: 4pt 4pt 0 0;
-  /* border: 2px solid #ebf5ff; */
-  background: #fff;
-  overflow: hidden;
-  width: 60pt;
-  /* margin-bottom: -12pt; */
-  /* height:20pt; */
-  padding: 0;
-  margin-top: 5pt;
-}
 ul {
   background: #fff;
   /* border: 2px solid #e5f0fd; */
@@ -45,12 +51,10 @@ ul {
   margin-block-start: -1em;
 }
 li {
+  border: 2px solid #e5f0fd;
   padding: 3pt;
 }
 a {
   color: #457b9d; /*42b983;*/
-}
-ul.sidebar-list {
-  margin-top: 3pt;
 }
 </style>

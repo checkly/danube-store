@@ -5,10 +5,11 @@
           <div class="detail-text-content">
             <h2>{{bookName}}</h2>
             <p>by {{bookAuthor}}</p>
+            <p>Genre: {{ bookGenre }}</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p>Price: {{ bookPrice }}</p>
+            <p>Price: ${{ bookPrice }}</p>
             <p>Left in stock: {{ bookStock }}</p>
           </div>
           <div class="detail-image-container">
@@ -27,10 +28,12 @@
 export default {
   data() {
     return {
-      bookName: 'placeholder name',
-      bookAuthor: 'placeholder name',
+      book: {},
+      bookName: 'placeholder title',
+      bookAuthor: 'placeholder author',
       bookPrice: '$14.95',
       bookStock: '3',
+      bookGenre: '',
       bookId: this.$route.params.id,
       details: ''
     };
@@ -42,15 +45,23 @@ export default {
     pullDetails: function() {
       // pull from server
       this.$http.get(`/api/books/${this.bookId}`).then(response => {
-        this.bookName = response.body.title
-        this.bookAuthor = response.body.author
+        this.book = response.body
+        this.bookName = this.book.title
+        this.bookAuthor = this.book.author
+        this.bookPrice = this.book.price
+        this.bookStock = this.book.stock
+        this.bookGenre = this.book.genre
       }, error => {
         console.log(error)
       })
     },
     addToCart: function() {
-      const myStorage = window.localStorage;
-      myStorage.setItem('myBook', this.bookName) // TODO make comprehensive
+      const myStorage = window.localStorage
+      let cartContentJson = myStorage.getItem('cartContent') ? myStorage.getItem('cartContent') : '[]'
+      const cartContent = JSON.parse(cartContentJson)
+      cartContent.push(this.book)
+      cartContentJson = JSON.stringify(cartContent)
+      myStorage.setItem('cartContent', cartContentJson)
     }
   }
 };
