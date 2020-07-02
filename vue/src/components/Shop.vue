@@ -13,8 +13,8 @@
           <div class="preview-title">{{ item.title }}</div>
           <div class="preview-author">by {{ item.author }}</div>
           <div class="preview-details">
-            <p>★★★★☆</p>
-            <p>$14.95</p>
+            <p>{{ item.rating }}</p>
+            <p>${{ item.price }}</p>
           </div>
         </li>
       </ul>
