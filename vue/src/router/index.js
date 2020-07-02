@@ -4,6 +4,8 @@ import Sidebar from '@/components/Sidebar'
 import Shop from '@/components/Shop'
 import Detail from '@/components/Detail'
 import Cart from '@/components/Cart'
+import Checkout from '@/components/Checkout'
+import Recap from '@/components/Recap'
 import vueResource from 'vue-resource';
 
 Vue.use(Router)
@@ -22,6 +24,14 @@ export default new Router({
     {
       path: '/cart',
       components: { componentCart: Cart }
+    },
+    {
+      path: '/checkout',
+      components: { componentCheckout: Checkout }
+    },
+    {
+      path: '/recap',
+      components: { componentRecap: Recap }
     }
   ],
   mode: 'history'

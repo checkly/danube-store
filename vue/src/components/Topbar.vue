@@ -13,7 +13,6 @@
       <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
       <button id="cart" @click="navigateToCart()"><img id="cart-img" src="static/icon-cart.png" /></button>
     </div>
-    <hr />
     <modal name="modal-login">
       <div class="box">
         <div class="box-part" id="bp-left">

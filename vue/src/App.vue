@@ -15,6 +15,8 @@
         <router-view name="componentDetail"></router-view>
         <router-view name="componentSidebar"></router-view>
         <router-view name="componentCart"></router-view>
+        <router-view name="componentCheckout"></router-view>
+        <router-view name="componentRecap"></router-view>
       </div>
     </div>
   </div>
@@ -26,6 +28,8 @@ import Sidebar from "./components/Sidebar";
 import Detail from "./components/Detail";
 import TopBar from "./components/Topbar";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import Recap from "./components/Recap";
 
 export default {
   name: "App",
@@ -40,7 +44,9 @@ export default {
     "component-shop": Shop,
     "component-detail": Detail,
     "component-topbar": TopBar,
-    "component-cart": Cart
+    "component-cart": Cart,
+    "component-checkout": Checkout,
+    "component-recap": Recap
   }
 };
 </script>

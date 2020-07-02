@@ -7,6 +7,8 @@
         1x, {{ item.title }}, {{ item.author }}, ${{ item.price }}
       </li>
     </ul>
+    <button @click="navigateToCheckout()" class="call-to-action">Checkout</button>
+    <button @click="emptyCart()">Empty Cart</button>
   </div>
 </template>
 <script>
@@ -16,10 +18,21 @@ export default {
       cartItems: []
     };
   },
-  methods: {},
+  methods: {
+    navigateToCheckout: function() {
+      this.$router.push({ path: `/checkout` }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
+    },
+    emptyCart: function() {
+      const myStorage = window.localStorage
+      localStorage.removeItem('cartContent')
+      this.cartItems = []
+    }
+  },
   mounted() {
     const myStorage = window.localStorage;
-    const cartContentJson = myStorage.getItem("cartContent");
+    const cartContentJson = myStorage.getItem("cartContent")
     this.cartItems = JSON.parse(cartContentJson);
   }
 };
