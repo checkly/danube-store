@@ -3,7 +3,7 @@
       <div class="detail-wrapper">
         <div class="detail-content">
           <div class="detail-text-content">
-            <h2>{{bookName}}</h2>
+            <h2>{{bookTitle}}</h2>
             <p>by {{bookAuthor}}</p>
             <p>Genre: {{ bookGenre }}</p>
             <p>
@@ -15,7 +15,7 @@
           <div class="detail-image-container">
             <img src="/static/generic-book.jpg" />
             <div class="centered">
-              <p class="title">{{bookName}}</p>
+              <p class="title">{{bookTitle}}</p>
               <p>{{bookAuthor}}</p>
             </div>
           </div>
@@ -29,13 +29,12 @@ export default {
   data() {
     return {
       book: {},
-      bookName: 'placeholder title',
-      bookAuthor: 'placeholder author',
-      bookPrice: '$14.95',
-      bookStock: '3',
+      bookTitle: '',
+      bookAuthor: '',
       bookGenre: '',
-      bookId: this.$route.params.id,
-      details: ''
+      bookPrice: '',
+      bookStock: '',
+      bookId: this.$route.params.id
     };
   },
   mounted() {
@@ -43,10 +42,9 @@ export default {
   },
   methods: {
     pullDetails: function() {
-      // pull from server
       this.$http.get(`/api/books/${this.bookId}`).then(response => {
         this.book = response.body
-        this.bookName = this.book.title
+        this.bookTitle = this.book.title
         this.bookAuthor = this.book.author
         this.bookPrice = this.book.price
         this.bookStock = this.book.stock

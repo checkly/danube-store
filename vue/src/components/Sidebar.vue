@@ -62,7 +62,7 @@ export default {
   width: 180pt;
   border-radius: 4pt;
   border: 2px solid #a8dadc;
-  background: #D3EDEE; /*A8DADC;*/
+  background: #D3EDEE;
   position: fixed;
   font-size: 0.85em;
   padding: 5pt 10pt;
@@ -77,12 +77,9 @@ h1, h2 {
 }
 .category-title-wrapper {
   border-radius: 4pt 4pt 0 0;
-  /* border: 2px solid #ebf5ff; */
   background: #fff;
   overflow:hidden;
   width:60pt;
-  /* margin-bottom: -12pt; */
-  /* height:20pt; */
   padding: 0;
   margin-top: 5pt;
 }

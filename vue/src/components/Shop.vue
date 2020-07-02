@@ -26,10 +26,7 @@
 export default {
   data: function() {
     return {
-      items: [
-        { id: 1, title: "This book", author: "this author" },
-        { id: 2, title: "That book", author: "that author" }
-      ],
+      items: [],
       id: "books"
     };
   },
@@ -38,7 +35,6 @@ export default {
   },
   methods: {
     pullItems: function() {
-      // pull from server
       this.$http.get("/api/books").then(
         response => {
           this.items = response.body;
