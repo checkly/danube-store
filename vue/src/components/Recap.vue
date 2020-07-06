@@ -8,6 +8,7 @@
                 </li>
             </ul>
         </p>
+        <button @click="navigateToHome()">Shop more</button>
     </div>
 </template>
 <script>
@@ -23,10 +24,10 @@ export default {
         this.$router.push({ path: "/" });
       });
     },
-    emptyCart: function() {
-      const myStorage = window.localStorage
-      localStorage.removeItem('cartContent')
-      this.cartItems = []
+    navigateToHome: function() {
+      this.$router.push({ path: `/` }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
     }
   },
   mounted() {
