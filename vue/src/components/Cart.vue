@@ -7,7 +7,7 @@
         1x, {{ item.title }}, {{ item.author }}, ${{ item.price }}
       </li>
     </ul>
-    <p>Total: ${{ totalPrice }}</p>
+    Total: $<div id="total-price">{{ totalPrice }}</div>
 
     <input
       type="checkbox"
@@ -118,5 +118,8 @@ li {
 }
 a {
   color: #457b9d;
+}
+#total-price {
+  display: inline-block
 }
 </style>
