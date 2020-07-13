@@ -53,10 +53,15 @@ export default {
         console.log(error)
       })
     },
-    addToCart: function() {
+    addToCart: async function() {
       const myStorage = window.localStorage
       let cartContentJson = myStorage.getItem('cartContent') ? myStorage.getItem('cartContent') : '[]'
       const cartContent = JSON.parse(cartContentJson)
+      
+      if (this.book === {}) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
       cartContent.push(this.book)
       cartContentJson = JSON.stringify(cartContent)
       myStorage.setItem('cartContent', cartContentJson)
