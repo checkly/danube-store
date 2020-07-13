@@ -7,7 +7,36 @@
         1x, {{ item.title }}, {{ item.author }}, ${{ item.price }}
       </li>
     </ul>
-    <button @click="navigateToCheckout()" class="call-to-action">Checkout</button>
+    <p>Total: ${{ totalPrice }}</p>
+
+    <input
+      type="checkbox"
+      id="billing-coupon"
+      v-model="billingCoupon"
+      name="billing-coupon"
+    />
+
+    <label for="billing-coupon">I have a coupon for this order</label><br />
+
+    <div v-if="billingCoupon">
+      <input
+        id="coupon"
+        type="text"
+        v-model="coupon"
+        placeholder="Coupon"
+        class="textfield-modal"
+      />
+
+      <button @click="applyCoupon">Apply</button>
+      <p v-if="couponAccepted">Coupon applied! 20% discount</p>
+      <p v-else>Invalid coupon.</p>
+
+    </div>
+    <br />
+
+    <button @click="navigateToCheckout()" class="call-to-action">
+      Checkout
+    </button>
     <button @click="emptyCart()">Empty Cart</button>
   </div>
 </template>
@@ -15,7 +44,11 @@
 export default {
   data() {
     return {
-      cartItems: []
+      cartItems: [],
+      totalPrice: 0,
+      billingCoupon: false,
+      coupon: "",
+      couponAccepted: false
     };
   },
   methods: {
@@ -25,15 +58,32 @@ export default {
       });
     },
     emptyCart: function() {
-      const myStorage = window.localStorage
-      localStorage.removeItem('cartContent')
-      this.cartItems = []
+      const myStorage = window.localStorage;
+      localStorage.removeItem("cartContent");
+      this.cartItems = [];
+    },
+    fetchItems: function() {
+      const myStorage = window.localStorage;
+      const cartContentJson = myStorage.getItem("cartContent");
+      this.cartItems = JSON.parse(cartContentJson);
+    },
+    sumPrices: function() {
+      let total = 0;
+      this.cartItems.forEach(element => {
+        total += parseFloat(element.price);
+      });
+      this.totalPrice = total;
+    },
+    applyCoupon: function() {
+      if (this.coupon === 'COUPON2020') {
+        this.couponAccepted = true
+        this.totalPrice = this.totalPrice * 0.8
+      }
     }
   },
   mounted() {
-    const myStorage = window.localStorage;
-    const cartContentJson = myStorage.getItem("cartContent")
-    this.cartItems = JSON.parse(cartContentJson);
+    this.fetchItems();
+    this.sumPrices();
   }
 };
 </script>
@@ -67,6 +117,6 @@ li {
   padding: 3pt;
 }
 a {
-  color: #457b9d; 
+  color: #457b9d;
 }
 </style>

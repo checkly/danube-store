@@ -4,7 +4,7 @@
         <p id="recap-content">
             <ul>
                 <li v-for="item in cartItems" :key="item.title">
-                    1x, {{ item.title }}, {{ item.author }}, ${{ item.price }}
+                    1x, {{ item.title }}, {{ item.author }}
                 </li>
             </ul>
         </p>
