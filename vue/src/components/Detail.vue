@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     pullDetails: function() {
-      this.$http.get(`/api/books/${this.bookId}`).then(response => {
+      this.$http.get(`http://localhost:5000/api/books/${this.bookId}`).then(response => {
         this.book = response.body
         this.bookTitle = this.book.title
         this.bookAuthor = this.book.author

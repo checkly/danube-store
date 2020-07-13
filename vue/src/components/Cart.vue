@@ -70,9 +70,9 @@ export default {
     sumPrices: function() {
       let total = 0;
       this.cartItems.forEach(element => {
-        total += parseFloat(element.price).toFixed(2);
+        total += parseFloat(element.price)
       });
-      this.totalPrice = total;
+      this.totalPrice = total.toFixed(2);
     },
     applyCoupon: function() {
       if (this.coupon === 'COUPON2020') {

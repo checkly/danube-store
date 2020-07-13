@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     pullItems: function() {
-      this.$http.get("/api/books").then(
+      this.$http.get("http://localhost:5000/api/books").then(
         response => {
           this.items = response.body;
         },
