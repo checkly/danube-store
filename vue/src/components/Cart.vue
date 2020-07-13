@@ -70,7 +70,7 @@ export default {
     sumPrices: function() {
       let total = 0;
       this.cartItems.forEach(element => {
-        total += parseFloat(element.price);
+        total += parseFloat(element.price).toFixed(2);
       });
       this.totalPrice = total;
     },
