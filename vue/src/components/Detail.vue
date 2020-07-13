@@ -60,6 +60,9 @@ export default {
       cartContent.push(this.book)
       cartContentJson = JSON.stringify(cartContent)
       myStorage.setItem('cartContent', cartContentJson)
+      this.$router.push({ path: `/cart` }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
     }
   }
 };
