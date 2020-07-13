@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>      
-        <button class="call-to-action" @click="addToCart()">Add to cart</button>  
+        <button class="call-to-action" v-if="book" @click="addToCart()">Add to cart</button>  
       </div>
   </div>
 </template>
@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-      book: {},
+      book: '',
       bookTitle: '',
       bookAuthor: '',
       bookGenre: '',
