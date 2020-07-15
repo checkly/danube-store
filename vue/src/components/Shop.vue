@@ -11,7 +11,7 @@
           v-on:click="navigateToMessage(item.id)"
         >
           <div class="preview-title">{{ item.title }}</div>
-          <div class="preview-author">by {{ item.author }}</div>
+          <div class="preview-author">{{ item.author }}</div>
           <div class="preview-details">
             <p>{{ item.rating }}</p>
             <p>${{ item.price }}</p>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     pullAllBooks: function() {
-      this.$http.get('/api/books').then(
+      this.$http.get('http://localhost:5000/api/books').then(
         response => {
           this.books = response.body;
         },
