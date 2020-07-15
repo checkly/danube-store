@@ -3,8 +3,8 @@
     <a href="/">
       <img id="logo" src="static/logo-horizontal.png" />
     </a>
-    <input type="text" name="fname" />
-    <button id="button-search">Search</button>
+    <input type="text" name="searchbar" v-model="searchQuery" />
+    <button id="button-search" @click="navigateToSearch()">Search</button>
     <div id="login-message" v-if="loggedIn">Welcome back, {{ email }}</div>
     <p id="clock">3:43pm 23/06/2002</p>
     <div class="account">
@@ -149,8 +149,9 @@ export default {
   data: function() {
     return {
       loggedIn: false,
-      email: "",
-      error: ""
+      email: '',
+      error: '',
+      searchQuery: ''
     };
   },
   methods: {
@@ -179,6 +180,11 @@ export default {
     },
     navigateToCart() {
       this.$router.push({ path: `/cart` }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
+    },
+    navigateToSearch() {
+      this.$router.push({ path: `/search`, query: { string: this.searchQuery } }).catch(err => {
         this.$router.push({ path: "/" });
       });
     }

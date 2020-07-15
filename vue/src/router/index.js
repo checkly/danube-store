@@ -32,7 +32,11 @@ export default new Router({
     {
       path: '/recap',
       components: { componentRecap: Recap }
-    }
+    },
+    {
+      path: '/search',
+      components: { componentSidebar: Sidebar, componentShop: Shop }
+    },
   ],
   mode: 'history'
 })

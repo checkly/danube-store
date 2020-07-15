@@ -11,7 +11,7 @@
     <hr />
     <div id="app-content">
       <div class="main-container">
-        <router-view name="componentShop"></router-view>
+        <router-view name="componentShop" :key="$route.fullPath"></router-view>
         <router-view name="componentDetail"></router-view>
         <router-view name="componentSidebar"></router-view>
         <router-view name="componentCart"></router-view>

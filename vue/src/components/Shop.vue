@@ -6,7 +6,7 @@
       <ul>
         <li
           class="preview"
-          v-for="item in items"
+          v-for="item in books"
           v-bind:key="item.TITLE"
           v-on:click="navigateToMessage(item.id)"
         >
@@ -26,18 +26,41 @@
 export default {
   data: function() {
     return {
-      items: [],
-      id: "books"
+      books: [],
+      id: "books",
+      searchQuery: this.$route.query.string
     };
   },
-  mounted() {
-    this.pullItems();
+  beforeMount() {
+    if (this.$route.query.string) {
+      this.pullSearchedBooks()
+    } else {
+      this.pullAllBooks()
+    }
   },
   methods: {
-    pullItems: function() {
-      this.$http.get("/api/books").then(
+    pullAllBooks: function() {
+      this.$http.get('/api/books').then(
         response => {
-          this.items = response.body;
+          this.books = response.body;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    },
+    pullSearchedBooks: function() {
+      this.books = []
+      console.log('called')
+      const searchString = this.$route.query.string
+        this.$http.get('/api/books').then(
+        response => {
+          response.body.forEach(element => {
+            if (element.title.toUpperCase().includes(searchString.toUpperCase())
+            || element.author.toUpperCase().includes(searchString.toUpperCase())) {
+                this.books.push(element)
+            }  
+          });
         },
         error => {
           console.log(error);
