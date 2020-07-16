@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     pullAllBooks: function() {
-      this.$http.get('http://localhost:5000/api/books').then(
+      this.$http.get('/api/books').then(
         response => {
           this.books = response.body;
         },
