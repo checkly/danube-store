@@ -213,7 +213,6 @@ input {
 }
 #clock {
   align-self: center;
-  margin-left: 5pt;
 }
 h3 {
   text-align: center;
@@ -338,5 +337,9 @@ label#account-usage {
 #cart {
     font-size: 15pt;
     padding: 7pt 12pt;
+}
+#button-search {
+  right: 5pt;
+  position: relative;
 }
 </style>
