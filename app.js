@@ -2,12 +2,13 @@ const path = require('path')
 const fs = require('fs')
 const express = require('express')
 var cors = require('cors')
-const history = require('connect-history-api-fallback')
+// const history = require('connect-history-api-fallback')
+const { v4: uuidv4 } = require('uuid');
 
 const app = express()
 const port = process.env.PORT || 5000
 
-app.use(history())
+// app.use(history())
 
 app.use(express.json())
 app.use(cors())
@@ -29,6 +30,14 @@ app.get('/api/books/:id', (req, res) => {
     });
     console.log(arrayFound)
     res.status('200').json(arrayFound[0])
+})
+
+app.get('/api/users/login', (req, res) => {
+    res.status('200').json({
+        message: 'Login successful',
+        token: uuidv4(),
+        name: 'Danube'
+    })
 })
 
 app.get('*', (req, res) => {

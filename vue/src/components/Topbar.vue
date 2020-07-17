@@ -33,10 +33,14 @@
                 <input
                   id="n-password2"
                   class="textfield-modal"
+                  v-model="password"
                   type="password"
                   placeholder="Password"
                 />
               </form>
+              <div class="error-message" v-if="error">
+                Please fill in all fields.
+              </div>
               <div style="margin-top: 42px"></div>
               <div class="button-set">
                 <button id="goto-signin-btn" @click="signIn">Sign In</button>
@@ -125,7 +129,7 @@
                   >I have read and accept the privacy policy</label
                 ><br />
               </form>
-              <div id="error-message" v-if="error">
+              <div class="error-message" v-if="error">
                 Please fill in all fields.
               </div>
               <div style="margin-top: 42px"></div>
@@ -150,7 +154,8 @@ export default {
     return {
       loggedIn: false,
       email: '',
-      error: '',
+      password: '',
+      error: false,
       searchQuery: ''
     };
   },
@@ -159,8 +164,13 @@ export default {
       this.$modal.show("modal-login");
     },
     signIn() {
-      this.loggedIn = true;
-      this.$modal.hide("modal-login");
+      if (this.email && this.password) {
+        this.loggedIn = true;
+        this.$modal.hide("modal-login");
+      } else {
+        this.error = true
+      }
+      
     },
     signOut() {
       this.loggedIn = false;
@@ -305,7 +315,7 @@ modal[name="modal-signup"] > .box {
 label#account-usage {
   margin-left: 40pt;
 }
-#error-message {
+.error-message {
   margin-left: 40pt;
   margin-top: 10pt;
   font-size: 8pt;
