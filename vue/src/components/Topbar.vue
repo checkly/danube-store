@@ -11,7 +11,7 @@
       <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
       <button id="logout" v-else @click="signOut()">Log out</button>
       <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
-      <button id="cart" @click="navigateToCart()"><img id="cart-img" src="static/icon-cart.png" /></button>
+      <button id="cart" @click="navigateToCart()"><i class="fas fa-shopping-cart cart-img"></i></button>
     </div>
     <modal name="modal-login">
       <div class="box">
@@ -217,14 +217,6 @@ h3 {
   width: 180pt;
   height: 30pt;
 }
-button {
-  border: none;
-  background: #1d3557;
-  color: #ffffff !important;
-  padding: 10pt;
-  text-transform: uppercase;
-  margin-right: 10pt;
-}
 .call-to-action {
   background: #e63946;
 }
@@ -319,12 +311,22 @@ label#account-usage {
   font-size: 8pt;
   color: red;
 }
-#cart-img {
-  height: 17pt;
-  width: 21pt;
-  vertical-align: middle;
+/* .cart-img {
+  font-size: 15pt;
+  padding: 0pt;
+} */
+.account {
+  display: flex;
+  align-self:center;
+    /* align-items: center; */
+
+  /* align-content: center; */
 }
-button#cart {
-  padding: 7pt 10pt;
+.account > button {
+  align-self: center;
+}
+#cart {
+    font-size: 14pt;
+    padding: 7pt 12pt;
 }
 </style>
