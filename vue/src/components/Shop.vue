@@ -33,17 +33,23 @@ export default {
     };
   },
   beforeMount() {
-    if (this.$route.query.string) {
-      this.pullSearchedBooks()
-    } else {
       this.pullAllBooks()
-    }
   },
   methods: {
     pullAllBooks: function() {
+      const searchString = this.$route.query.string
       axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
-          this.books = response.data;
+          if (searchString) {
+            response.data.forEach(element => {
+              if (element.title.toUpperCase().includes(searchString.toUpperCase())
+              || element.author.toUpperCase().includes(searchString.toUpperCase())) {
+                  this.books.push(element)
+              }  
+            })
+          } else {
+            this.books = response.data;
+          }
         },
         error => {
           console.log(error);
