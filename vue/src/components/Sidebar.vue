@@ -6,24 +6,24 @@
     <ul>
       <li>Fiction
         <ul class="sidebar-list">
-          <li><a href="">Crime & Thrillers</a></li>
-          <li><a href="">Novels & Stories</a></li>
-          <li><a href="">Erotic Novels</a></li>
-          <li><a href="">Sci-Fi</a></li>
-          <li><a href="">Fantasy</a></li>
-          <li><a href="">Horror</a></li>
+          <li @click="navigateToCategory"><a name="crime">Crime & Thrillers</a></li>
+          <li @click="navigateToCategory"><a name="novel">Novels & Stories</a></li>
+          <li @click="navigateToCategory"><a name="erotic">Erotic Novels</a></li>
+          <li @click="navigateToCategory"><a name="scifi">Sci-Fi</a></li>
+          <li @click="navigateToCategory"><a name="fantasy">Fantasy</a></li>
+          <li @click="navigateToCategory"><a name="horror">Horror</a></li>
         </ul>
       </li>
       <li>Non-Fiction
         <ul class="sidebar-list">
-          <li><a href="">History</a></li>
-          <li><a href="">Psychology</a></li>
-          <li><a href="">Philosophy</a></li>
-          <li><a href="">Cooking</a></li>
-          <li><a href="">Economics</a></li>
-          <li><a href="">Mathematics</a></li>
-          <li><a href="">Business</a></li>
-          <li><a href="">Finance</a></li>
+          <li @click="navigateToCategory"><a name="history">History</a></li>
+          <li @click="navigateToCategory"><a name="psychology">Psychology</a></li>
+          <li @click="navigateToCategory"><a name="philosophy">Philosophy</a></li>
+          <li @click="navigateToCategory"><a name="cooking">Cooking</a></li>
+          <li @click="navigateToCategory"><a name="economics">Economics</a></li>
+          <li @click="navigateToCategory"><a name="mathematics">Mathematics</a></li>
+          <li @click="navigateToCategory"><a name="business">Business</a></li>
+          <li @click="navigateToCategory"><a name="finance">Finance</a></li>
         </ul>   
       </li>
     </ul>
@@ -33,13 +33,13 @@
     <ul>
       <li>Fiction
         <ul class="sidebar-list">
-          <li><a href="">Crime & Thrillers</a></li>
-          <li><a href="">Documentaries</a></li>
-          <li><a href="">TV</a></li>
-          <li><a href="">Sci-Fi</a></li>
-          <li><a href="">Fantasy</a></li>
-          <li><a href="">Horror</a></li>
-          <li><a href="">Cartoons</a></li>
+          <li>Crime & Thrillers</li>
+          <li>Documentaries</li>
+          <li>TV</li>
+          <li>Sci-Fi</li>
+          <li>Fantasy</li>
+          <li>Horror</li>
+          <li>Cartoons</li>
         </ul>
       </li>
     </ul>
@@ -52,6 +52,13 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    navigateToCategory(event) {
+      this.$router.push({ path: `/category`, query: { string: event.target.name } }).catch(err => {
+        this.$router.push({ path: "/" });
+      })
     }
   }
 }

@@ -29,45 +29,34 @@ export default {
     return {
       books: [],
       id: "books",
-      searchQuery: this.$route.query.string
     };
   },
   beforeMount() {
-      this.pullAllBooks()
+      this.pullBooks()
   },
   methods: {
-    pullAllBooks: function() {
-      const searchString = this.$route.query.string
+    pullBooks: function() {
       axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
-          if (searchString) {
+          const path = this.$route.path
+          const shopQuery = this.$route.query.string
+
+          if (path.includes('search')) {
             response.data.forEach(element => {
-              if (element.title.toUpperCase().includes(searchString.toUpperCase())
-              || element.author.toUpperCase().includes(searchString.toUpperCase())) {
+              if (element.title.toUpperCase().includes(shopQuery.toUpperCase())
+              || element.author.toUpperCase().includes(shopQuery.toUpperCase())) {
+                  this.books.push(element)
+              }  
+            })
+          } else if (path.includes('category')) {
+            response.data.forEach(element => {
+              if (element.genre.toUpperCase().includes(shopQuery.toUpperCase())) {
                   this.books.push(element)
               }  
             })
           } else {
             this.books = response.data;
           }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    },
-    pullSearchedBooks: function() {
-      this.books = []
-      console.log('called')
-      const searchString = this.$route.query.string
-        axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
-        response => {
-          response.data.forEach(element => {
-            if (element.title.toUpperCase().includes(searchString.toUpperCase())
-            || element.author.toUpperCase().includes(searchString.toUpperCase())) {
-                this.books.push(element)
-            }  
-          });
         },
         error => {
           console.log(error);

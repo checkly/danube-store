@@ -37,6 +37,10 @@ export default new Router({
       path: '/search',
       components: { componentSidebar: Sidebar, componentShop: Shop }
     },
+    {
+      path: '/category',
+      components: { componentSidebar: Sidebar, componentShop: Shop }
+    },
   ],
   mode: 'history'
 })
