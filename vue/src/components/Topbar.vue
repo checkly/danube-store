@@ -336,7 +336,7 @@ label#account-usage {
   align-self: center;
 }
 #cart {
-    font-size: 14pt;
+    font-size: 15pt;
     padding: 7pt 12pt;
 }
 </style>
