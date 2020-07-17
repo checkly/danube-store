@@ -18,7 +18,7 @@ app.get(/.*/), (req,res) => res.sendFile(__dirname + '/vue/dist/index.html')
 app.get('/api/books', (req, res) => {
     const rawData = fs.readFileSync('books.json')
     const books = JSON.parse(rawData)
-    // console.log(books)
+    console.log(books)
     console.log(req.headers)
     res.status('200').json(books)
 })
