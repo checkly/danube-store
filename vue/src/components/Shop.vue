@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data: function() {
     return {
@@ -40,7 +41,7 @@ export default {
   },
   methods: {
     pullAllBooks: function() {
-      this.$http.get('/api/books').then(
+      axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
           this.books = response.body;
         },
@@ -53,7 +54,7 @@ export default {
       this.books = []
       console.log('called')
       const searchString = this.$route.query.string
-        this.$http.get('/api/books').then(
+        axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
           response.body.forEach(element => {
             if (element.title.toUpperCase().includes(searchString.toUpperCase())

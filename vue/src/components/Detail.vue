@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     pullDetails: function() {
-      this.$http.get(`/api/books/${this.bookId}`).then(response => {
+      axios.get(`/api/books/${this.bookId}`, { headers: { "Accept": "application/json" }}).then(response => {
         this.book = response.body
         this.bookTitle = this.book.title
         this.bookAuthor = this.book.author
