@@ -43,7 +43,7 @@ export default {
     pullAllBooks: function() {
       axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
-          this.books = response.body;
+          this.books = response.data;
         },
         error => {
           console.log(error);
@@ -56,7 +56,7 @@ export default {
       const searchString = this.$route.query.string
         axios.get('/api/books', { headers: { "Accept": "application/json" }}).then(
         response => {
-          response.body.forEach(element => {
+          response.data.forEach(element => {
             if (element.title.toUpperCase().includes(searchString.toUpperCase())
             || element.author.toUpperCase().includes(searchString.toUpperCase())) {
                 this.books.push(element)

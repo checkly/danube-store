@@ -44,7 +44,7 @@ export default {
   methods: {
     pullDetails: function() {
       axios.get(`/api/books/${this.bookId}`, { headers: { "Accept": "application/json" }}).then(response => {
-        this.book = response.body
+        this.book = response.data
         this.bookTitle = this.book.title
         this.bookAuthor = this.book.author
         this.bookPrice = this.book.price
