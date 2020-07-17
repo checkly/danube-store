@@ -6,7 +6,6 @@
         ONLY!
       </h3>
     </div>
-    <hr />
     <component-topbar></component-topbar>
     <hr />
     <div id="app-content">
@@ -74,6 +73,7 @@ body {
 #top-special-offer {
   background-color: #1d3557;
   padding: 10pt 0;
+  margin-bottom: 7pt;
 }
 h3 {
   text-align: center;
