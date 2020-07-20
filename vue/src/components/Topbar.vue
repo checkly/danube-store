@@ -333,16 +333,9 @@ label#account-usage {
   font-size: 8pt;
   color: red;
 }
-/* .cart-img {
-  font-size: 15pt;
-  padding: 0pt;
-} */
 .account-buttons {
   display: flex;
   align-self:center;
-    /* align-items: center; */
-
-  /* align-content: center; */
 }
 .account-buttons > button {
   align-self: center;

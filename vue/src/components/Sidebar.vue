@@ -80,7 +80,6 @@ h1, h2 {
   padding: 0 5pt;
   margin-block-start: 0.25em;
   margin-block-end: 0.5em;
-
 }
 .category-title-wrapper {
   border-radius: 4pt 4pt 0 0;
@@ -92,7 +91,6 @@ h1, h2 {
 }
 ul {
   background: #fff;
-  /* border: 2px solid #e5f0fd; */
   list-style-type: none;
   border-radius: 0 4pt 4pt 4pt;
   padding: 5pt;
@@ -102,7 +100,7 @@ li {
   padding: 3pt;
 }
 a {
-  color: #457b9d/*42b983;*/
+  color: #457b9d
 }
 ul.sidebar-list {
   margin-top: 3pt;

@@ -5,11 +5,11 @@
             <h3>User Details</h3>
             <div>E-Mail address: user@email.com</div>
             <div>
-                Profile picture: 
+                Profile picture: <input type="file" ref="file" @change="onSelect()" />
+                <br />
+                <button @click="submit()">Upload</button>
                 <div id="upload-message-succcess" v-if="uploadSuccess">Upload successful.</div>
                 <div id="upload-message-failure" v-if="uploadFailure">Upload failed: unsupported file format.</div>
-                <input type="file" ref="file" @change="onSelect()" />
-                <button @click="submit()">Upload</button>
             </div>
             <h3>Billing Information</h3>
             <form autocomplete="false">
@@ -52,6 +52,7 @@
                     v-model="billingCompany"
                     placeholder="Company (optional)"
                 />
+                <button type="button">Update</button>
             </form>
         </div>
     </div>
@@ -121,7 +122,7 @@ export default {
   font-size: 20px;
   font-weight: 300;
 }
-input {
+form > input {
   display: block;
   box-sizing: border-box;
   margin-bottom: 4px;
