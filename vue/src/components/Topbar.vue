@@ -12,7 +12,7 @@
       <button id="logout" v-else @click="signOut()">Log out</button>
       <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
       <button id="cart" class="topbar-icon" @click="navigateToCart()"><i class="fas fa-shopping-cart"></i></button>
-      <button id="account" class="topbar-icon" @click="navigateToAccount()"><i class="fas fa-user"></i></button>
+      <button id="account" class="topbar-icon" v-if="loggedIn" @click="navigateToAccount()"><i class="fas fa-user"></i></button>
     </div>
     <modal name="modal-login">
       <div class="box">
