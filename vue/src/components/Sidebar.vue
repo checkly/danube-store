@@ -98,6 +98,7 @@ ul {
 }
 li {
   padding: 3pt;
+  cursor: pointer;
 }
 a {
   color: #457b9d

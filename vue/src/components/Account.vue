@@ -2,58 +2,68 @@
     <div class="account">
         <div class="account-content">
             <h2>Account</h2>
-            <h3>User Details</h3>
-            <div>E-Mail address: user@email.com</div>
-            <div>
-                Profile picture: <input type="file" ref="file" @change="onSelect()" />
-                <br />
-                <button @click="submit()">Upload</button>
-                <div id="upload-message-succcess" v-if="uploadSuccess">Upload successful.</div>
-                <div id="upload-message-failure" v-if="uploadFailure">Upload failed: unsupported file format.</div>
-            </div>
-            <h3>Billing Information</h3>
-            <form autocomplete="false">
-                <div class="autocomplete-fix">
-                    <input disabled type="password" />
+            <div id="user-details">
+                <h3>User Details</h3>
+                <div>E-Mail address: user@email.com</div>
+                <div>
+                    Profile picture: <input type="file" ref="file" @change="onSelect()" />
+                    <br />
+                    <button @click="submit()">Upload</button>
+                    <div id="upload-message-succcess" v-if="uploadSuccess">Upload successful.</div>
+                    <div id="upload-message-failure" v-if="uploadFailure">Upload failed: unsupported file format.</div>
                 </div>
-                <input
-                    id="s-name"
-                    v-model="billingName"
-                    type="text"
-                    placeholder="Name"
-                />
-                <input
-                    id="s-surname"
-                    v-model="billingSurname"
-                    type="text"
-                    placeholder="Surname"
-                />
-                <input
-                    id="s-address"
-                    v-model="billingAddress"
-                    type="text"
-                    placeholder="Address"
-                />
-                <input
-                    id="s-zipcode"
-                    type="text"
-                    v-model="billingZipcode"
-                    placeholder="Zipcode"
-                />
-                <input
-                    id="s-city"
-                    type="text"
-                    v-model="billingCity"
-                    placeholder="City"
-                />
-                <input
-                    id="s-company"
-                    type="text"
-                    v-model="billingCompany"
-                    placeholder="Company (optional)"
-                />
-                <button type="button">Update</button>
-            </form>
+            </div>
+            <div id="billing">
+                <h3>Billing Information</h3>
+                <form autocomplete="false">
+                    <div class="autocomplete-fix">
+                        <input disabled type="password" />
+                    </div>
+                    <input
+                        id="s-name"
+                        v-model="billingName"
+                        type="text"
+                        placeholder="Name"
+                    />
+                    <input
+                        id="s-surname"
+                        v-model="billingSurname"
+                        type="text"
+                        placeholder="Surname"
+                    />
+                    <input
+                        id="s-address"
+                        v-model="billingAddress"
+                        type="text"
+                        placeholder="Address"
+                    />
+                    <input
+                        id="s-zipcode"
+                        type="text"
+                        v-model="billingZipcode"
+                        placeholder="Zipcode"
+                    />
+                    <input
+                        id="s-city"
+                        type="text"
+                        v-model="billingCity"
+                        placeholder="City"
+                    />
+                    <input
+                        id="s-company"
+                        type="text"
+                        v-model="billingCompany"
+                        placeholder="Company (optional)"
+                    />
+                    <button type="button">Update</button>
+                </form>
+            </div>
+            <div id="orders">
+                <h3>Previous Orders</h3>
+                <!-- <ul>
+                    <li>Order #1 - 20/07/02 - <a href="/static/invoice-20-07-02.pdf" download>Invoice</a></li>
+                </ul> -->
+            </div>
         </div>
     </div>
 </template>
@@ -70,8 +80,12 @@ export default {
             errorMessage: '',
             file: '',
             uploadSuccess: false,
-            uploadFailure: false
+            uploadFailure: false,
+            orders: [ { date: "20/07/20",  } ]
         }
+    },
+    beforeMount() {
+
     },
     methods: {
         onSelect() {

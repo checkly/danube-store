@@ -145,6 +145,20 @@ export default {
       !this.shippingCompany) {
         this.errorMessage = "Please fill in all fields."
       } else {
+        const myStorage = window.localStorage;
+        const cartContentJson = myStorage.getItem("cartContent");
+        const cartItems = JSON.parse(cartContentJson);
+        let ordersJson = myStorage.getItem("orders")
+        let orders
+        if (!ordersJson) {
+          orders = []
+        } else {
+          orders = JSON.parse(ordersJson);
+        }
+        orders.push(cartItems)
+        myStorage.setItem('orders', JSON.stringify(orders))
+        
+        localStorage.removeItem("cartContent");
         this.$router.push({ path: `/recap` }).catch(err => {});
       }
     }
