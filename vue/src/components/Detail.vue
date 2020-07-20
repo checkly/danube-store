@@ -3,7 +3,8 @@
       <div class="detail-wrapper">
         <div class="detail-content">
           <div class="detail-text-content">
-            <h2>{{bookTitle}}</h2>
+            <h2>{{ bookTitle }}</h2>
+            <p class="book-rating">{{ bookRating }}</p>
             <p>by {{bookAuthor}}</p>
             <p>Genre: {{ bookGenre }}</p>
             <p>
@@ -35,6 +36,7 @@ export default {
       bookGenre: '',
       bookPrice: '',
       bookStock: '',
+      bookRating: '',
       bookId: this.$route.params.id
     };
   },
@@ -50,6 +52,7 @@ export default {
         this.bookPrice = this.book.price
         this.bookStock = this.book.stock
         this.bookGenre = this.book.genre
+        this.bookRating = this.book.rating
       }, error => {
         console.log(error)
       })
@@ -84,7 +87,6 @@ export default {
 .detail-content {
   margin: 0 10pt;
   display: flex;
-  /* max-width: 50%; */
 }
 .detail-text-content {
   margin-right:30pt;
@@ -111,5 +113,9 @@ img {
 .call-to-action {
   padding: 10pt;
   margin: 0 0 10pt 10pt;
+}
+.book-rating {
+  text-shadow: 1px 0 0 #888, 0 -1px 0 #888, 0 1px 0 #888, -1px 0 0 #888;
+  color:#FFD700;
 }
 </style>

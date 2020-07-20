@@ -13,8 +13,8 @@
           <div class="preview-title">{{ item.title }}</div>
           <div class="preview-author">{{ item.author }}</div>
           <div class="preview-details">
-            <p>{{ item.rating }}</p>
-            <p>${{ item.price }}</p>
+            <p class="preview-rating">{{ item.rating }}</p>
+            <p class="preview-price">${{ item.price }}</p>
           </div>
         </li>
       </ul>
@@ -115,5 +115,9 @@ p {
   text-align: center;
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
+}
+.preview-rating {
+  text-shadow: 1px 0 0 #aaa, 0 -1px 0 #aaa, 0 1px 0 #aaa, -1px 0 0 #aaa;
+  color:#FFD700;
 }
 </style>
