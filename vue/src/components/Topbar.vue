@@ -1,7 +1,7 @@
 <template>
   <div class="topbar">
     <a href="/">
-      <img id="logo" src="static/logo-horizontal.png" />
+      <img id="logo" src="static/logo-horizontal.svg" />
     </a>
     <input type="text" name="searchbar" v-model="searchQuery" />
     <button id="button-search" @click="navigateToSearch()">Search</button>
@@ -237,6 +237,7 @@ h3 {
 #logo {
   width: 180pt;
   height: 30pt;
+  margin-left: 5pt
 }
 .call-to-action {
   background: #e63946;
