@@ -7,11 +7,12 @@
     <button id="button-search" @click="navigateToSearch()">Search</button>
     <div id="login-message" v-if="loggedIn">Welcome back, {{ email }}</div>
     <p id="clock">3:43pm 23/06/2002</p>
-    <div class="account">
+    <div class="account-buttons">
       <button id="login" v-if="!loggedIn" @click="show()">Log in</button>
       <button id="logout" v-else @click="signOut()">Log out</button>
       <button id="signup" @click="signUp()" class="call-to-action">Sign up</button>
-      <button id="cart" @click="navigateToCart()"><i class="fas fa-shopping-cart cart-img"></i></button>
+      <button id="cart" class="topbar-icon" @click="navigateToCart()"><i class="fas fa-shopping-cart"></i></button>
+      <button id="account" class="topbar-icon" @click="navigateToAccount()"><i class="fas fa-user"></i></button>
     </div>
     <modal name="modal-login">
       <div class="box">
@@ -39,7 +40,7 @@
                 />
               </form>
               <div class="error-message" v-if="error">
-                Please fill in all fields.
+                {{ error }}
               </div>
               <div style="margin-top: 42px"></div>
               <div class="button-set">
@@ -164,13 +165,19 @@ export default {
       this.$modal.show("modal-login");
     },
     signIn() {
-      if (this.email && this.password) {
+      this.error = ''
+
+      if (!this.email || !this.password) {
+        this.error = 'Please fill in all fields.'
+        return
+      }
+      
+      if ((this.email === 'user@email.com') && (this.password === 'supersecure1')) {
         this.loggedIn = true;
         this.$modal.hide("modal-login");
       } else {
-        this.error = true
+        this.error = 'The email and/or password you have provided is incorrect.'
       }
-      
     },
     signOut() {
       this.loggedIn = false;
@@ -195,6 +202,11 @@ export default {
     },
     navigateToSearch() {
       this.$router.push({ path: `/search`, query: { string: this.searchQuery } }).catch(err => {
+        this.$router.push({ path: "/" });
+      });
+    },
+    navigateToAccount() {
+      this.$router.push({ path: `/account` }).catch(err => {
         this.$router.push({ path: "/" });
       });
     }
@@ -310,6 +322,7 @@ modal[name="modal-signup"] > .box {
 #login-message {
   font-weight: bold;
   align-self: center;
+  margin: 0 5pt;
 }
 label#account-usage {
   margin-left: 40pt;
@@ -324,19 +337,20 @@ label#account-usage {
   font-size: 15pt;
   padding: 0pt;
 } */
-.account {
+.account-buttons {
   display: flex;
   align-self:center;
     /* align-items: center; */
 
   /* align-content: center; */
 }
-.account > button {
+.account-buttons > button {
   align-self: center;
 }
-#cart {
-    font-size: 15pt;
-    padding: 7pt 12pt;
+
+.topbar-icon {
+  font-size: 15pt;
+  padding: 7pt 12pt;
 }
 #button-search {
   right: 5pt;

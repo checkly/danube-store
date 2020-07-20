@@ -6,7 +6,8 @@ import Detail from '@/components/Detail'
 import Cart from '@/components/Cart'
 import Checkout from '@/components/Checkout'
 import Recap from '@/components/Recap'
-import vueResource from 'vue-resource';
+import Account from '@/components/Account'
+import vueResource from 'vue-resource'
 
 Vue.use(Router)
 Vue.use(vueResource)
@@ -41,6 +42,10 @@ export default new Router({
       path: '/category',
       components: { componentSidebar: Sidebar, componentShop: Shop }
     },
+    {
+      path: '/account',
+      components: { componentAccount: Account }
+    }
   ],
   mode: 'history'
 })

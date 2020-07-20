@@ -16,19 +16,21 @@
         <router-view name="componentCart"></router-view>
         <router-view name="componentCheckout"></router-view>
         <router-view name="componentRecap"></router-view>
+        <router-view name="componentAccount"></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Shop from "./components/Shop";
-import Sidebar from "./components/Sidebar";
-import Detail from "./components/Detail";
-import TopBar from "./components/Topbar";
-import Cart from "./components/Cart";
-import Checkout from "./components/Checkout";
-import Recap from "./components/Recap";
+import Shop from "./components/Shop"
+import Sidebar from "./components/Sidebar"
+import Detail from "./components/Detail"
+import TopBar from "./components/Topbar"
+import Cart from "./components/Cart"
+import Checkout from "./components/Checkout"
+import Recap from "./components/Recap"
+import Account from "./components/Account"
 
 export default {
   name: "App",
@@ -54,7 +56,7 @@ export default {
 .main-container {
   display: flex;
 }
-.account {
+.account-buttons {
   align-self: center;
   margin-left: 20pt;
   align-content: center;
