@@ -18,5 +18,8 @@
     "uuid": "^8.2.0"
   },
   "author": "Giovanni Rago, ragog90@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "uuidv4": "^6.2.0"
+  }
 }

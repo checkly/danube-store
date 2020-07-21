@@ -50,15 +50,22 @@
         class="textfield-modal"
       />
       <br />
-      <label id="account-usage">I would like the items to be shipped</label
-      ><br />
+      <label id="account-usage">I would like the items to be shipped</label>
+      <br />
       <input type="radio" id="asap" name="user-type" value="asap" />
       <label for="asap">as soon as possible</label><br />
       <input type="radio" id="single" name="user-type" value="single" />
       <label for="single">in a single package</label><br />
       <br />
-      <input type="checkbox" id="billing-different" v-model="separateBilling" name="billing-different">
-      <label for="billing-different">Billing address is different from shipping</label><br>
+      <input
+        type="checkbox"
+        id="billing-different"
+        v-model="separateBilling"
+        name="billing-different"
+      />
+      <label for="billing-different"
+        >Billing address is different from shipping</label
+      ><br />
     </form>
     <div id="billing-block" v-if="separateBilling">
       <p>Billing:</p>
@@ -116,48 +123,65 @@
   </div>
 </template>
 <script>
+import { uuid } from "uuidv4";
 export default {
   data() {
     return {
-      shippingName: '',
-      shippingSurname: '',
-      shippingAddress: '',
-      shippingZipcode: '',
-      shippingCity: '',
-      shippingCompany: '',
-      billingName: '',
-      billingSurname: '',
-      billingAddress: '',
-      billingZipcode: '',
-      billingCity: '',
-      billingCompany: '',
-      errorMessage: '',
+      shippingName: "",
+      shippingSurname: "",
+      shippingAddress: "",
+      shippingZipcode: "",
+      shippingCity: "",
+      shippingCompany: "",
+      billingName: "",
+      billingSurname: "",
+      billingAddress: "",
+      billingZipcode: "",
+      billingCity: "",
+      billingCompany: "",
+      errorMessage: "",
       separateBilling: false
     };
   },
   methods: {
     navigateToRecap: function() {
-      if (!this.shippingName || 
-      !this.shippingSurname ||
-      !this.shippingAddress ||
-      !this.shippingZipcode ||
-      !this.shippingCity ||
-      !this.shippingCompany) {
-        this.errorMessage = "Please fill in all fields."
+      // TODO completely refactor
+      if (
+        !this.shippingName ||
+        !this.shippingSurname ||
+        !this.shippingAddress ||
+        !this.shippingZipcode ||
+        !this.shippingCity ||
+        !this.shippingCompany
+      ) {
+        this.errorMessage = "Please fill in all fields.";
       } else {
         const myStorage = window.localStorage;
         const cartContentJson = myStorage.getItem("cartContent");
         const cartItems = JSON.parse(cartContentJson);
-        let ordersJson = myStorage.getItem("orders")
-        let orders
+        let ordersJson = myStorage.getItem("orders");
+        let orders;
         if (!ordersJson) {
-          orders = []
+          orders = [];
         } else {
           orders = JSON.parse(ordersJson);
         }
-        orders.push(cartItems)
-        myStorage.setItem('orders', JSON.stringify(orders))
-        
+
+        let ts = Date.now();
+        let dateOb = new Date(ts);
+
+        let date = dateOb.getDate();
+        let month = dateOb.getMonth() + 1;
+        let year = dateOb.getFullYear();
+
+        const newOrder = {
+          id: uuid(),
+          date: date + "-" + month + "-" + year,
+          cartItems
+        };
+        orders.push(newOrder);
+        myStorage.setItem("orders", JSON.stringify(orders));
+
         localStorage.removeItem("cartContent");
         this.$router.push({ path: `/recap` }).catch(err => {});
       }

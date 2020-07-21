@@ -60,9 +60,11 @@
             </div>
             <div id="orders">
                 <h3>Previous Orders</h3>
-                <!-- <ul>
-                    <li>Order #1 - 20/07/02 - <a href="/static/invoice-20-07-02.pdf" download>Invoice</a></li>
-                </ul> -->
+                <ul>
+                    <li v-for="order in orders" v-bind:key="order.date">
+                        Order {{order.id}} - <a href="/static/invoice-20-07-02.pdf" download>Invoice</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -81,11 +83,13 @@ export default {
             file: '',
             uploadSuccess: false,
             uploadFailure: false,
-            orders: [ { date: "20/07/20",  } ]
+            orders: []
         }
     },
     beforeMount() {
-
+        const myStorage = window.localStorage;
+        const ordersJson = myStorage.getItem("orders");
+        this.orders = JSON.parse(ordersJson);
     },
     methods: {
         onSelect() {
