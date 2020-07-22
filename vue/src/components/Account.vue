@@ -61,9 +61,10 @@
             <div id="orders">
                 <h3>Previous Orders</h3>
                 <ul>
-                    <li v-for="order in orders" v-bind:key="order.date">
+                    <li>Order C0E11D0A-7378-446A-BE77-2FA07A576CFA - <a href="/static/invoice-20-07-02.pdf" download>Invoice</a></li>
+                    <!-- <li v-for="order in orders" v-bind:key="order.date">
                         Order {{order.id}} - <a href="/static/invoice-20-07-02.pdf" download>Invoice</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
