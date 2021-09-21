@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express()
 const port = process.env.PORT || 5000
+const downtime = process.env.DOWNTIME || 0
 
 app.use(history())
 
@@ -16,6 +17,9 @@ app.use(express.static(__dirname + '/vue/dist'))
 app.get(/.*/), (req,res) => res.sendFile(__dirname + '/vue/dist/index.html')
 
 app.get('/api/books', (req, res) => {
+    if (downtime) {
+        res.status('500').send()
+    }
     const rawData = fs.readFileSync('books.json')
     const books = JSON.parse(rawData)
     res.status('200').json(books)
