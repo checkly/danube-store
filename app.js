@@ -16,9 +16,13 @@ app.use(express.static(__dirname + '/vue/dist'))
 app.get(/.*/), (req,res) => res.sendFile(__dirname + '/vue/dist/index.html')
 
 app.get('/api/books', (req, res) => {
-    const rawData = fs.readFileSync('books.json')
-    const books = JSON.parse(rawData)
-    res.status('200').json(books)
+    if (fs.existsSync('downtime.json')) {
+        res.status('500').send()  
+    } else {
+        const rawData = fs.readFileSync('books.json')
+        const books = JSON.parse(rawData)
+        res.status('200').json(books)    
+    }
 })
 
 app.get('/api/books/:id', (req, res) => {
@@ -44,6 +48,16 @@ app.get('*', (req, res) => {
         message: 'Page not found.',
         name: 'Danube'
     })
+})
+
+app.post('/api/toggle', (req, res) => {
+    if (fs.existsSync('downtime.json')) {
+        fs.unlinkSync('downtime.json')
+        res.status('200').send()        
+    } else {
+        fs.writeFileSync('downtime.json', '{}')
+        res.status('200').send() 
+    }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
