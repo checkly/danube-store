@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express()
 const port = process.env.PORT || 5000
-const downtime = process.env.DOWNTIME || 0
+const downtime = process.env.DOWNTIME || false
 
 app.use(history())
 
