@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-    <div id="top-special-offer">
-      <h3>
-        SPECIAL OFFER: 20% OFF BOOKS WITH <i>WORDS</i> IN THEM!!! LIMITED TIME
-        ONLY!
+    <div id="top-special-offer" v-if="!downtime" >
+      <h3 class="top-notice" id="top-special-offer-message">
+        SPECIAL OFFER: 20% OFF BOOKS WITH <i>WORDS</i> IN THEM!!! LIMITED TIME ONLY!
+      </h3>
+    </div>
+    <div id="top-downtime-notice" v-else >
+      <h3 class="top-notice" id="top-special-offer-message">
+        ERROR! Danube is experiencing issues! Downtimes such as this are set to happen a few times a week for demo purposes :)
       </h3>
     </div>
     <component-topbar></component-topbar>
@@ -36,7 +40,13 @@ export default {
   name: "App",
   data: function() {
     return {
-    };
+      downtime: false
+};
+  },
+  mounted() {
+    this.$root.$on('downtime', (arg1) => {
+      this.downtime = true
+    });
   },
   methods: {
   },
@@ -74,6 +84,11 @@ body {
 }
 #top-special-offer {
   background-color: #1d3557;
+  padding: 10pt 0;
+  margin-bottom: 7pt;
+}
+#top-downtime-notice {
+  background-color: #ff0000;
   padding: 10pt 0;
   margin-bottom: 7pt;
 }

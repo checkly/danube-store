@@ -59,6 +59,7 @@ export default {
           }
         },
         error => {
+          this.$root.$emit('downtime', null)
           console.log(error);
         }
       );
