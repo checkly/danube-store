@@ -7,6 +7,7 @@ import Cart from '@/components/Cart'
 import Checkout from '@/components/Checkout'
 import Recap from '@/components/Recap'
 import Account from '@/components/Account'
+import NotFound from '@/components/NotFound'
 import vueResource from 'vue-resource'
 
 Vue.use(Router)
@@ -45,6 +46,14 @@ export default new Router({
     {
       path: '/account',
       components: { componentAccount: Account }
+    },
+    {
+      path: "/404",
+      components: { componentNotFound: NotFound }
+    },
+    {
+      path: "*",
+      beforeEnter() { window.location.href = "/404" },
     }
   ],
   mode: 'history'
