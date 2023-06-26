@@ -21,6 +21,7 @@
         <router-view name="componentCheckout"></router-view>
         <router-view name="componentRecap"></router-view>
         <router-view name="componentAccount"></router-view>
+        <router-view name="componentNotFound"></router-view>
       </div>
     </div>
   </div>
@@ -34,7 +35,6 @@ import TopBar from "./components/Topbar"
 import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
 import Recap from "./components/Recap"
-import Account from "./components/Account"
 
 export default {
   name: "App",
