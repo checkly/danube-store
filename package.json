@@ -4,8 +4,8 @@
   "description": "A store to buy books - but on the internet!",
   "main": "app.js",
   "scripts": {
-    "start": "npm i && node app.js",
-    "dev": "npm i && nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
