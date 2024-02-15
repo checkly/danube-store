@@ -18,11 +18,11 @@ app.use(express.static(__dirname + '/vue/dist'))
 
 app.get('/api/books', (req, res) => {
     if (fs.existsSync('downtime.json')) {
-        res.status(500).send()  
+        res.status(500).send()
     } else {
         const rawData = fs.readFileSync('books.json')
         const books = JSON.parse(rawData)
-        res.status(200).json(books)    
+        res.status(200).json(books)
     }
 })
 
@@ -50,10 +50,10 @@ app.get(/.*/, (req,res) => {
 app.post('/api/toggle', (req, res) => {
     if (fs.existsSync('downtime.json')) {
         fs.unlinkSync('downtime.json')
-        res.status(200).send()        
+        res.status(200).send()
     } else {
         fs.writeFileSync('downtime.json', '{}')
-        res.status(200).send() 
+        res.status(200).send()
     }
 })
 
