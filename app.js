@@ -42,9 +42,6 @@ app.get('/api/users/login', (req, res) => {
     })
 })
 
-app.get(/.*/, (req,res) => {
-    res.sendFile(__dirname + '/vue/dist/index.html')
-})
 
 app.post('/api/toggle', (req, res) => {
     if (fs.existsSync('downtime.json')) {
@@ -54,6 +51,10 @@ app.post('/api/toggle', (req, res) => {
         fs.writeFileSync('downtime.json', '{}')
         res.status(200).send()
     }
+})
+
+app.get(/.*/, (req,res) => {
+    res.sendFile(__dirname + '/vue/dist/index.html')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
