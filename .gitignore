@@ -87,5 +87,3 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-vue/dist
